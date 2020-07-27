@@ -2,14 +2,13 @@ import tensorflow.compat.v1 as tf
 tf.disable_v2_behavior()
 import numpy as np
 
-xy= np.loadtxt('data-03-diabetes.csv', delimiter=',', dtype=np.float32)
-x_data = xy[:, 0:-1]
+xy= np.genfromtxt('Placement_Data_Full_Class.csv', delimiter=',')
+x_data = xy[:, 0:-2]
 y_data = xy[:,[-1]]
-
-X = tf.placeholder(tf.float32, shape=[None,8])
+X = tf.placeholder(tf.float32, shape=[None,5])
 Y = tf.placeholder(tf.float32, shape=[None, 1])
 
-W = tf.Variable(tf.random_normal([8,1]), name='weight')
+W = tf.Variable(tf.random_normal([5,1]), name='weight')
 b = tf.Variable(tf.random_normal([1]), name='bias')
 
 hypothesis = tf.sigmoid(tf.matmul(X, W) + b)
